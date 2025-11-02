@@ -1,6 +1,8 @@
 # Library Management System — Feature Documentation
 
-This document explains the major features of the Library Management System with practical examples and real-world analogies to help you understand how each component works.
+This project is a comprehensive, single-file, command-line application built in C that manages the entire workflow of a small library: from cataloging books to tracking member borrowing history. It features role-based access for Admins and Members, persistent data storage using .dat files, and an automated fine calculation system.
+
+This document explains the major features of the Library Management System with practical examples and real-world analogies to help you understand how each component works. It synthesizes information from all project files (main.c, README.md, and DOCUMENTATION.docx).
 
 ---
 
@@ -51,7 +53,7 @@ Admin credentials stored in: admin.dat
 Member access uses: Member ID (auto-generated, starting from 2001)
 ```
 
-When an admin logs in, the system reads the `admin.dat` file and compares the username and password. Members simply provide their ID — no password required (simplified for educational purposes).
+When an admin logs in, the system reads the `admin.dat` file and compares the username and password. Members simply provide their ID — no password required.
 
 ---
 
@@ -294,7 +296,6 @@ Think of this like **video game save files**:
 The system provides multiple search methods:
 - **Book Search**: By ID, Title, Author, ISBN
 - **Member Search**: By ID, Name
-- **Recursive Search Functions**: Binary search for IDs
 - **String Matching**: Case-insensitive partial matching for titles/names
 
 ### Analogy: Google for Your Library
@@ -307,29 +308,29 @@ Just like Google helps you find websites, these search functions help you find:
 #### 1. Search by ID (Fast)
 ```
 Use case: "I need book #1005"
-Method: Direct lookup or recursive binary search
-Speed: Very fast (O(log n) if sorted, O(n) if unsorted)
+Method: Direct lookup (Linear Search)
+Speed: O(n)
 ```
 
 #### 2. Search by Title/Name (Flexible)
 ```
 Use case: "I'm looking for books with 'python' in the title"
-Method: Case-insensitive substring matching
+Method: Case-insensitive substring matching (strstr)
 Speed: Slower (O(n) — checks every book)
 Result: All matching books displayed
 ```
 
 ### Analogy: Phone Book vs. Yellow Pages
-- **Search by ID**: Like looking up someone in a **phone book** when you know their exact name (alphabetical, fast)
-- **Search by Title/Name**: Like browsing the **Yellow Pages** by category (have to scan through, slower but more flexible)
+- **Search by ID**: Like looking up someone in a **phone book** when you know their exact name.
+- **Search by Title/Name**: Like browsing the **Yellow Pages** by category, or using Ctrl+F in a document.
 
 ### Recursive Search Implementation
-The program includes `searchBookRecursive()` and `searchMemberRecursive()` functions that use **binary search** (a divide-and-conquer algorithm):
+The program includes `searchBookRecursive()` and `searchMemberRecursive()` functions that use **binary search** (a divide-and-conquer algorithm). However, note that the main user-facing search menus currently use the simpler linear search (strstr) for flexibility, as binary search would require the arrays to be perpetually sorted by ID.
 
-```
-Analogy: Guessing a Number Game
+### Analogy: Guessing a Number Game
 You're thinking of a number between 1-100, I try to guess it.
 
+```
 Linear Search (slow):
   Is it 1? No. Is it 2? No. Is it 3? No...
   (Worst case: 100 guesses)
