@@ -84,7 +84,7 @@ If using Code::Blocks:
 
 ```
 ╔══════════════════════════════════╗
-║   LIBRARY MANAGEMENT SYSTEM     ║
+║    LIBRARY MANAGEMENT SYSTEM     ║
 ╚══════════════════════════════════╝
 Main Menu:
 1. Admin Login
